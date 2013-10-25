@@ -15,7 +15,7 @@
         }
     }
 
-<td class="role-state" data-value="@if(entityState.isFinal) {1} else {0} @entityState.name">
+<td class="role-state @if(entityState.isFinal) {role-state-final}" data-value="@if(entityState.isFinal) {1} else {0} @entityState.name">
     <div class="role-next-states-group btn-group btn-group-stretch">
         <button type="button" class="role-next-states-trigger btn @stateClass(entityState) dropdown-toggle" data-toggle="dropdown">
             @entityState.name
