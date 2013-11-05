@@ -19,7 +19,7 @@ module buildBoard {
     }
 
     export interface EntityState {
-        isClosed : boolean
+        isFinal : boolean
     }
 
     export interface Assignment {

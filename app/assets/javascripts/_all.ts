@@ -13,4 +13,5 @@
 /// <reference path='controllers/PullRequestController.ts' />
 /// <reference path='models/User.ts' />
 /// <reference path='models/Filter.ts' />
+/// <reference path='directives/BranchesFilterDirective1.ts' />
 /// <reference path='Application.ts' />

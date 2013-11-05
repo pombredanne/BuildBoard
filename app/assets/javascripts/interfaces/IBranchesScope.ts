@@ -14,6 +14,7 @@ module buildBoard {
         allBranchesFilter:IFilter
         entityBranchesFilter:IFilter
         getUserFilter(userId:number):IFilter
+        closedBranchesFilter:IFilter
 
 
         loading:boolean;

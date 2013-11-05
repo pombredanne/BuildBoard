@@ -13,15 +13,16 @@ module buildBoard {
             this.$scope.setFilter = this.setFilter.bind(this);
             this.$scope.checkCurrentFilter = this.checkCurrentFilter.bind(this);
 
-            this.$scope.getUserFilter = this.getUserFilter.bind(this);
+            this.$scope.getUserFilter = (userId:number) => new UserFilter(userId);
+            this.$scope.allBranchesFilter = new Filter(branch => true);
+            this.$scope.entityBranchesFilter = new Filter(branch => branch.entity != undefined);
+            this.$scope.closedBranchesFilter = new Filter(branch => branch.entity != undefined && branch.entity.state.isFinal );
 
-            this.$scope.allBranchesFilter = new Filter(branch=>true);
-            this.$scope.entityBranchesFilter = new Filter(branch=>!!branch.entity);
+            this.$scope.currentFilter = this.$scope.allBranchesFilter;
 
             this.$scope.loading = true;
-            console.log(this.$scope);
 
-            $http.get($window.jsRoutes.controllers.Application.branches().absoluteURL()).success((data:Branch[])=> {
+            $http.get($window.jsRoutes.controllers.Application.branches().absoluteURL()).success((data:Branch[]) => {
                 this.$scope.allBranches = data;
                 this.$scope.users = _.chain(data)
                     .filter(branch=>!!branch.entity)
@@ -38,18 +39,12 @@ module buildBoard {
 
         }
 
-        private getUserFilter(userId:number) {
-            return new Filter(branch=> {
-                return branch.entity && _.any(branch.entity.assignments, assignemnt=>assignemnt.userId == userId);
-            });
-        }
-
         private setFilter(filter:IFilter) {
             this.$scope.currentFilter = filter;
         }
 
         private checkCurrentFilter(filter:IFilter) {
-            return this.$scope.currentFilter == filter;
+            return this.$scope.currentFilter.isEquals(filter);
         }
     }
 

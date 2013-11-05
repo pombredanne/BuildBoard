@@ -5,6 +5,9 @@
         </script>
         <ul class="nav nav-pills nav-stacked">
             <li>
+
+                <branches-filter filter="allBranchesFilter"></branches-filter>
+
                 <a ng-click="setFilter(allBranchesFilter)" class="{{checkCurrentFilter(allBranchesFilter) | activeFilter}}">All branches
                     <span class="badge  pull-right">{{allBranchesFilter.getCount(allBranches)}}</span>
                 </a>
@@ -15,6 +18,13 @@
                     <span class="badge  pull-right">{{entityBranchesFilter.getCount(allBranches)}}</span>
                 </a>
             </li>
+
+            <li>
+                <a ng-click="setFilter(closedBranchesFilter)" class="{{checkCurrentFilter(closedBranchesFilter) | activeFilter}}">Closed branches
+                    <span class="badge  pull-right">{{closedBranchesFilter.getCount(allBranches)}}</span>
+                </a>
+            </li>
+
             <li>
                 <a ng-click="setFilter(getUserFilter(@user.tpId))" class="{{checkCurrentFilter(getUserFilter(@user.tpId)) | activeFilter}}">My branches
                     <span class="badge  pull-right">{{getUserFilter(@user.tpId).getCount(allBranches)}}</span>
@@ -22,7 +32,9 @@
             </li>
             <hr>
             <li ng-repeat="user in users | orderBy:'firstName+lastName'">
-                <a ng-click="setFilter(getUserFilter(user.userId))" class="{{checkCurrentFilter(getUserFilter(user.userId)) | activeFilter}}">{{user.firstName}} {{user.lastName}}
+                <a ng-click="setFilter(getUserFilter(user.userId))" class="{{checkCurrentFilter(getUserFilter(user.userId)) | activeFilter}}">
+                    <img ng-src="{{user.avatar}}30">
+                    {{user.firstName}} {{user.lastName}}
                     <span class="badge  pull-right">{{getUserFilter(user.userId).getCount(allBranches)}}</span>
                 </a>
             </li>

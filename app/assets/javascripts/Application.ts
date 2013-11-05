@@ -4,7 +4,7 @@
 module buildBoard {
     'use strict';
 
-    var buildBoard = angular.module('buildBoard', ['ui.bootstrap', 'ngRoute'])
+    var buildBoardApp = angular.module('buildBoard', ['ui.bootstrap', 'ngRoute'])
         .controller('branchesController', BranchesController)
         .controller('pullRequestController', PullRequestController)
         .filter('activeFilter', activeFilter)
@@ -19,6 +19,6 @@ module buildBoard {
                         redirectTo: '/branches'
                     })
         ])
-
+        .directive('branchesFilter', () => new BranchesFilterDirective())
 
 }
