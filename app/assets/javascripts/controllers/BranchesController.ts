@@ -10,8 +10,6 @@ module buildBoard {
         ];
 
         constructor(private $scope:IBranchesScope, private $http:ng.IHttpService, private $window:IBuildBoardWindow) {
-            this.$scope.setFilter = this.setFilter.bind(this);
-            this.$scope.checkCurrentFilter = this.checkCurrentFilter.bind(this);
 
             this.$scope.getUserFilter = (userId:number) => new UserFilter(userId);
             this.$scope.allBranchesFilter = new Filter(branch => true);
@@ -39,13 +37,6 @@ module buildBoard {
 
         }
 
-        private setFilter(filter:IFilter) {
-            this.$scope.currentFilter = filter;
-        }
-
-        private checkCurrentFilter(filter:IFilter) {
-            return this.$scope.currentFilter.isEquals(filter);
-        }
     }
 
 

@@ -6,7 +6,9 @@
         <ul class="nav nav-pills nav-stacked">
             <li>
 
-                <branches-filter filter="allBranchesFilter"></branches-filter>
+                <branches-filter filter="allBranchesFilter">
+                    All branches
+                </branches-filter>
 
                 <a ng-click="setFilter(allBranchesFilter)" class="{{checkCurrentFilter(allBranchesFilter) | activeFilter}}">All branches
                     <span class="badge  pull-right">{{allBranchesFilter.getCount(allBranches)}}</span>
@@ -32,6 +34,10 @@
             </li>
             <hr>
             <li ng-repeat="user in users | orderBy:'firstName+lastName'">
+                <branches-filter filter="getUserFilter(user.userId)">
+                    <img ng-src="{{user.avatar}}30"> {{user.firstName}} {{user.lastName}}
+                </branches-filter>
+
                 <a ng-click="setFilter(getUserFilter(user.userId))" class="{{checkCurrentFilter(getUserFilter(user.userId)) | activeFilter}}">
                     <img ng-src="{{user.avatar}}30">
                     {{user.firstName}} {{user.lastName}}
