@@ -5,44 +5,30 @@
         </script>
         <ul class="nav nav-pills nav-stacked">
             <li>
-
-                <branches-filter filter="allBranchesFilter">
+                <branches-filter filter="allBranchesFilter" branches="allBranches" active="true">
                     All branches
                 </branches-filter>
-
-                <a ng-click="setFilter(allBranchesFilter)" class="{{checkCurrentFilter(allBranchesFilter) | activeFilter}}">All branches
-                    <span class="badge  pull-right">{{allBranchesFilter.getCount(allBranches)}}</span>
-                </a>
             </li>
-
             <li>
-                <a ng-click="setFilter(entityBranchesFilter)" class="{{checkCurrentFilter(entityBranchesFilter) | activeFilter}}">Entity branches
-                    <span class="badge  pull-right">{{entityBranchesFilter.getCount(allBranches)}}</span>
-                </a>
+                <branches-filter filter="entityBranchesFilter" branches="allBranches">
+                    Entity branches
+                </branches-filter>
             </li>
-
             <li>
-                <a ng-click="setFilter(closedBranchesFilter)" class="{{checkCurrentFilter(closedBranchesFilter) | activeFilter}}">Closed branches
-                    <span class="badge  pull-right">{{closedBranchesFilter.getCount(allBranches)}}</span>
-                </a>
+                <branches-filter filter="closedBranchesFilter" branches="allBranches">
+                    Closed branches
+                </branches-filter>
             </li>
-
             <li>
-                <a ng-click="setFilter(getUserFilter(@user.tpId))" class="{{checkCurrentFilter(getUserFilter(@user.tpId)) | activeFilter}}">My branches
-                    <span class="badge  pull-right">{{getUserFilter(@user.tpId).getCount(allBranches)}}</span>
-                </a>
+                <branches-filter filter="getUserFilter(@user.tpId)" branches="allBranches">
+                    My branches
+                </branches-filter>
             </li>
             <hr>
             <li ng-repeat="user in users | orderBy:'firstName+lastName'">
-                <branches-filter filter="getUserFilter(user.userId)">
-                    <img ng-src="{{user.avatar}}30"> {{user.firstName}} {{user.lastName}}
+                <branches-filter filter="getUserFilter(user.userId)" branches="allBranches">
+                    <img ng-src="{{user.avatar}}30">{{user.firstName}} {{user.lastName}}
                 </branches-filter>
-
-                <a ng-click="setFilter(getUserFilter(user.userId))" class="{{checkCurrentFilter(getUserFilter(user.userId)) | activeFilter}}">
-                    <img ng-src="{{user.avatar}}30">
-                    {{user.firstName}} {{user.lastName}}
-                    <span class="badge  pull-right">{{getUserFilter(user.userId).getCount(allBranches)}}</span>
-                </a>
             </li>
         </ul>
     }
